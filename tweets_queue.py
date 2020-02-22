@@ -21,7 +21,7 @@ def in_queue(q):
         for ii in range(20):
             text_to_image(tweets[ii], ii + 1)
         image_to_video(q_item)
-        print("Finished.")
+        print('\n' + "Finished." + '\n')
         q.task_done()
 
         
