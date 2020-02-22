@@ -6,13 +6,13 @@ import tweepy
 from tweepy import OAuthHandler, Stream
 import re
 from nltk.tokenize import WordPunctTokenizer
-from Twitter_API_key import *
+from keys import *
 
 
 def get_feeds(name):
     # 1) Connect to Twitter API
     auth = OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token_key, access_token_secret)
+    auth.set_access_token(access_token, access_secret)
     api = tweepy.API(auth)
     # 2) Get tweets
     tweets_list = []
