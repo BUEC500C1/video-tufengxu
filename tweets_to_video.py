@@ -63,3 +63,6 @@ def image_to_video(name):
     cd = "ffmpeg -f concat -i videos.txt -c copy OutputVideo" + name + ".mp4"
     pp = os.popen(cd)
     pp.close()
+    
+    
+    
