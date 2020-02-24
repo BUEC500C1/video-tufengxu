@@ -12,7 +12,7 @@ from keys import *
 def get_feeds(name):
     tweets_list = []
     if consumer_key == '':
-        f = open(example.json)
+        f = open("example.json")
         text = f.read()
         tweets_list.extend(text)
     else:
