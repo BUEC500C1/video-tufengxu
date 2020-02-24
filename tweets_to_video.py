@@ -10,15 +10,18 @@ from keys import *
 
 
 def get_feeds(name):
-    # 1) Connect to Twitter API
-    auth = OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token, access_secret)
-    api = tweepy.API(auth)
-    # 2) Get tweets
     tweets_list = []
-    new_tweet = api.user_timeline(screen_name=name, count=50)
-    tweets_list.extend(new_tweet)
-    # 3) Pre-processing of the original tweets
+    if consumer_key == ":
+        f = open(example.json)
+        text = f.read()
+        tweets_list.extend(text)
+    else:
+        auth = OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_secret)
+        api = tweepy.API(auth)
+        new_tweet = api.user_timeline(screen_name=name, count=50)
+        tweets_list.extend(new_tweet)
+    # Processing the tweets
     cleaned_tweets_list = []  # All cleaned tweets are stored in this list
     for status in tweets_list:
         tweet_i = status.text.encode('utf-8')
