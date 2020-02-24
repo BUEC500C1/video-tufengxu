@@ -13,12 +13,11 @@ from keys import *
 def get_feeds(name):
     tweets_list = []
     if consumer_key == '':
-        f = open("example.json")
-#         ttt = f.read()
-        ttt = json.load("example.json")
-        tweets_list.extend(ttt)
-        tweets_list.extend(ttt)
-        tweets_list.extend(ttt)
+        f = open("example.txt")
+        ttt = f.readlines()
+        for t in ttt:
+            tweets_list.extend(t)
+        return tweet_list
     else:
         auth = OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_secret)
@@ -26,18 +25,18 @@ def get_feeds(name):
         new_tweet = api.user_timeline(screen_name=name, count=50)
         tweets_list.extend(new_tweet)
     # Processing the tweets
-    cleaned_tweets_list = []  # All cleaned tweets are stored in this list
-    for status in tweets_list:
-        tweet_i = status.text.encode('utf-8')
-        removed = re.sub(r'@[A-Za-z0-9]+', '', tweet_i.decode('utf-8'))
-        link_rm = re.sub('https?://[A-Za-z0-9./]+', '', removed)
-        number_rm = re.sub('[^a-zA-Z]', ' ', link_rm)
-        lower = number_rm.lower()
-        tok = WordPunctTokenizer()
-        words = tok.tokenize(lower)
-        cleaned = (' '.join(words)).strip()
-        cleaned_tweets_list.append(cleaned)
-    return cleaned_tweets_list
+        cleaned_tweets_list = []  # All cleaned tweets are stored in this list
+        for status in tweets_list:
+            tweet_i = status.text.encode('utf-8')
+            removed = re.sub(r'@[A-Za-z0-9]+', '', tweet_i.decode('utf-8'))
+            link_rm = re.sub('https?://[A-Za-z0-9./]+', '', removed)
+            number_rm = re.sub('[^a-zA-Z]', ' ', link_rm)
+            lower = number_rm.lower()
+            tok = WordPunctTokenizer()
+            words = tok.tokenize(lower)
+            cleaned = (' '.join(words)).strip()
+            cleaned_tweets_list.append(cleaned)
+        return cleaned_tweets_list
 
 
 def text_to_image(raw, th):
