@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import tweepy
 from tweepy import OAuthHandler, Stream
 import re
+import json
 from nltk.tokenize import WordPunctTokenizer
 from keys import *
 
