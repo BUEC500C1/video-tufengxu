@@ -13,8 +13,9 @@ def get_feeds(name):
     tweets_list = []
     if consumer_key == '':
         f = open("example.json")
-        text = f.read()
-        tweets_list.extend(text)
+#         ttt = f.read()
+        ttt = json.load("example.json")
+        tweets_list.extend(ttt)
     else:
         auth = OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_secret)
