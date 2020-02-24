@@ -17,7 +17,7 @@ def get_feeds(name):
         ttt = f.readlines()
         for t in ttt:
             tweets_list.extend(t)
-        return tweet_list
+        return tweets_list
     else:
         auth = OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_secret)
